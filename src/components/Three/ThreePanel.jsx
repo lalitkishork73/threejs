@@ -1,6 +1,6 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect } from 'react';
 import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 /**
  * @function ThreePanel
@@ -20,22 +20,31 @@ function ThreePanel() {
         const height = canvas.clientHeight;
         const aspect = width / height;
 
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, aspect, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas });
-        const orbit = new OrbitControls(camera, renderer.domElement);
+        let scene = new THREE.Scene();
+        let camera = new THREE.PerspectiveCamera(100, aspect, 0.1, 1000);
+        let renderer = new THREE.WebGLRenderer({ canvas });
+        let orbit = new OrbitControls(camera, renderer.domElement);
         renderer.setSize(width, height);
 
-        const axisHelper = new THREE.AxesHelper(3)
-        scene.add(axisHelper)
-        camera.position.set(0, 2, 5)
-        orbit.update()
+        // Add ambient light to the scene
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+        scene.add(ambientLight);
+
+        // Add grid helper to the scene
+        const gridHelper = new THREE.GridHelper(10, 100);
+        scene.add(gridHelper);
+
+        const axisHelper = new THREE.AxesHelper(1);
+        scene.add(axisHelper);
+
+        camera.position.set(0, 2, 5);
+        orbit.update();
         const geometry = new THREE.BoxGeometry();
-        const material = new THREE.MeshBasicMaterial({ color: 'white' });
+        const material = new THREE.MeshBasicMaterial({ color: 'green' });
         const cube = new THREE.Mesh(geometry, material);
         scene.add(cube);
 
-        // camera.position.z = 5;
+        
 
         function render() {
             cube.rotation.x += 0.01;
@@ -47,6 +56,9 @@ function ThreePanel() {
         render();
 
         function handleResize() {
+            const width = canvas.clientWidth;
+            const height = canvas.clientHeight;
+
             camera.aspect = width / height;
             camera.updateProjectionMatrix();
             renderer.setSize(width, height);
@@ -59,11 +71,11 @@ function ThreePanel() {
         };
     }, []);
 
-    return <>
-        <div className='flex justify-center bg-black'>
-            <canvas ref={canvasRef} className='h-[600px] w-[1000px] bg-gray-100' />
+    return (
+        <div className="flex justify-center bg-black">
+            <canvas ref={canvasRef} className="h-[600px] w-[1000px] bg-gray-100" />
         </div>
-    </>
+    );
 }
 
 export default ThreePanel;

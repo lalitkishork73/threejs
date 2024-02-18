@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import ThreePanel from './ThreePanel'
+import ThreePanel from './Three/ThreePanel'
 import LeftNavigation from './LeftBarPanel/subMenu/Search3DObject'
 import RightNavigation from './RightNavigation'
 import { SiAtom } from "react-icons/si";

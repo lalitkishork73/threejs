@@ -26,7 +26,7 @@ function ThreePanel() {
         const orbit = new OrbitControls(camera, renderer.domElement);
         renderer.setSize(width, height);
 
-        const axisHelper = new THREE.AxesHelper(5)
+        const axisHelper = new THREE.AxesHelper(3)
         scene.add(axisHelper)
         camera.position.set(0, 2, 5)
         orbit.update()

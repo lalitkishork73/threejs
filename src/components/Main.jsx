@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import ThreePanel from './Three/ThreePanel'
-import LeftNavigation from './LeftBarPanel/subMenu/Search3DObject'
-import RightNavigation from './RightNavigation'
+import RightNavigation from './RightBarPanel/RightNavigation'
 import { SiAtom } from "react-icons/si";
 import LeftPanelItems from './LeftBarPanel/LeftPanelItems';
+import BottomPanel from './BottomPanel/BottomPanel';
+
 function Main() {
 
     return (
@@ -17,8 +18,13 @@ function Main() {
                 </div>
                 <div className='flex h-full relative'>
                     <LeftPanelItems />
-                    <div className='w-full '>
-                        <ThreePanel />
+                    <div className='w-full h-full flex flex-col '>
+                        <div className='flex w-full h-full '>
+                            <ThreePanel />
+                        </div>
+                        <div className='flex w-full h-full'>
+                            <BottomPanel />
+                        </div>
                     </div>
                     <div className='w-[350px] border-l break-all p-2'>
                         <div className='flex flex-col'>

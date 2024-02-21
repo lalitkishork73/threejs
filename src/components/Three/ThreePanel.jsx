@@ -44,7 +44,7 @@ function ThreePanel() {
         const cube = new THREE.Mesh(geometry, material);
         scene.add(cube);
 
-        
+
 
         function render() {
             cube.rotation.x += 0.01;
@@ -72,8 +72,8 @@ function ThreePanel() {
     }, []);
 
     return (
-        <div className="flex justify-center bg-black">
-            <canvas ref={canvasRef} className="h-[600px] w-[1000px] bg-gray-100" />
+        <div className="flex justify-center bg-black h-full w-full">
+            <canvas ref={canvasRef} className="h-full w-full bg-gray-100" />
         </div>
     );
 }
